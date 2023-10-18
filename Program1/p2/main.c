@@ -41,11 +41,7 @@ int main(int argc, char* argv[]) {
   if (argc < 2) { usage(); exit(-1); }
 
   char* prog = utReadFile(argv[1]);       // raw chars
-
-  //++ Insert a loop that steps thru every char of 'prog' and
-  //++ prints its decimal (%d) and character (%c) value
-  //++ to the console.
-
+  
   Lex*  lex  = lexNew(prog);
   Toks* toks = lexAll(lex);
   toksDump(toks);             // dump Tokens to ToksDump.txt
