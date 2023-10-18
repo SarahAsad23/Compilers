@@ -1,0 +1,31 @@
+// test33.subc
+//
+// This test illustrates how swapping arguments naively
+// gives wrong answers: main calls add(7, 1) and gets the
+// correct answer 8.
+//
+// Then main calls swap, which calls add.  But it returns
+// the wrong answer of 14.
+
+// The solution is to copy values from the saved R0-R4, 
+// which have just been saved with a PUSH {R0-R4}, rather
+// than transfer between registers directly:
+//
+//    R1 = R0
+//    R0 = R1
+//
+// This fix is already implemented in the compiler.
+
+int add(int x, int y) { return x + y; }
+
+int swap(int a, int b) {
+  int i; i = add(b, a); return i;
+}
+
+int main() {
+  int i;
+  i = says("test33 : Expect = 00000008 : Actual = ");
+  i = swap(7, 1);
+  i = sayn(i);
+  return 33;
+}

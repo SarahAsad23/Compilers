@@ -1,0 +1,16 @@
+int main() {
+  int a;
+  int b;
+  int i;
+
+  a = 7;   b = 999;
+
+  i = says("test05 : Expect = NotEqual : Actual = ");
+
+  if (a == b) { i = says("Equal"); }
+
+  if (a != b) { i = says("NotEqual"); }
+
+  return 5;
+
+}
