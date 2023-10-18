@@ -35,8 +35,6 @@
 
 #include "main.h"
 
-void usage() { printf("\n\nUsage: subc <file.subc> \n\n"); }
-
 int main(int argc, char* argv[]) {
 
   char* prog = utReadFile(argv[1]);       // raw chars
