@@ -38,7 +38,6 @@
 void usage() { printf("\n\nUsage: subc <file.subc> \n\n"); }
 
 int main(int argc, char* argv[]) {
-  //if (argc < 2) { usage(); exit(-1); }
 
   char* prog = utReadFile(argv[1]);       // raw chars
 
@@ -47,11 +46,10 @@ int main(int argc, char* argv[]) {
     int i = 0; 
     //while we have not hit EOF
     while(prog[i] != '\0'){
-      //get the current character 
-      char current = prog[i];
+      char current = prog[i];  //get the current character 
       printf("%d\n", current); //print its decimal 
       printf("%c\n", current); //print its character value 
-      i++; //increment to the next character 
+      i++;                     //increment to the next character 
     }  
   }
   
