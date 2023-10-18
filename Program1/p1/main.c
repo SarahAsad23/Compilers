@@ -1,4 +1,4 @@
-// main.c - SubC Compiler - Jim Hogg, 2020
+// main.c - SubC Compiler
 //
 // Prog       => Fun+
 // Fun        => "int"  Nam    "(" Pars ")" Body
@@ -38,14 +38,23 @@
 void usage() { printf("\n\nUsage: subc <file.subc> \n\n"); }
 
 int main(int argc, char* argv[]) {
-  if (argc < 2) { usage(); exit(-1); }
+  //if (argc < 2) { usage(); exit(-1); }
 
   char* prog = utReadFile(argv[1]);       // raw chars
 
-  //++ Insert a loop that steps thru every char of 'prog' and
-  //++ prints its decimal (%d) and character (%c) value
-  //++ to the console.
-
+  //make sure prog is not null
+  if(prog != NULL){
+    int i = 0; 
+    //while we have not hit EOF
+    while(prog[i] != '\0'){
+      //get the current character 
+      char current = prog[i];
+      printf("%d\n", current); //print its decimal 
+      printf("%c\n", current); //print its character value 
+      i++; //increment to the next character 
+    }  
+  }
+  
   Lex*  lex  = lexNew(prog);
   Toks* toks = lexAll(lex);
   toksDump(toks);             // dump Tokens to ToksDump.txt

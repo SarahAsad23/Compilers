@@ -1,4 +1,4 @@
-// ut.h - Utility Functions for the SubC Compiler - Jim Hogg, 2020
+// ut.h - Utility Functions for the SubC Compiler 
 
 #pragma once
 

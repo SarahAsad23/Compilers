@@ -1,4 +1,4 @@
-// ut.c - Utility functions for the SubC Compiler - Jim Hogg, 2020
+// ut.c - Utility functions for the SubC Compiler 
 
 #include "ut.h"
 

@@ -1,4 +1,4 @@
-// main.h - SubC Compiler - Jim Hogg, 2020
+// main.h - SubC Compiler 
 
 #pragma once
 

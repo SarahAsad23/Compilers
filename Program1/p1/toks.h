@@ -1,4 +1,4 @@
-// toks.h - collection of Tokens - Jim Hogg, 2020
+// toks.h - collection of Tokens 
 
 #pragma once
 

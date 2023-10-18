@@ -1,4 +1,4 @@
-// toks.c - container of Tokens - Jim Hogg, 2020
+// toks.c - container of Tokens 
 
 #include <stddef.h>       // offsetof
 #include <stdlib.h>       // malloc

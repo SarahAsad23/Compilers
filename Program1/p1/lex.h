@@ -1,4 +1,4 @@
-// lex.h - Lexical Analyzer - Jim Hogg, 2020
+// lex.h - Lexical Analyzer
 
 #pragma once
 

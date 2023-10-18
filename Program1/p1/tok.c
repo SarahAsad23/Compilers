@@ -1,4 +1,4 @@
-// tok.c - functions to handle tokens - Jim Hogg, 2020
+// tok.c - functions to handle tokens 
 
 #include "tok.h"
 

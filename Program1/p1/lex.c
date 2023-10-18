@@ -1,4 +1,4 @@
-// lex.c - Lexical Analyzer for the SubC Compiler - Jim Hogg 2020
+// lex.c - Lexical Analyzer for the SubC Compiler
 
 #include "lex.h"
 
