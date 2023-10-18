@@ -52,9 +52,8 @@ char* utReadFile(char* filePath) {
   //use ftell to get the current position and store it in fileSize
   int fileSize = ftell(f); 
 
-
   if(fileSize == -1){
-    printf("error getting fileSize"); 
+    printf("error getting file size"); 
     //close the file and exit 
     fclose(f); 
     return NULL; 
