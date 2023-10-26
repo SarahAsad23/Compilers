@@ -35,22 +35,48 @@ void utPause() {
   exit(0);
 }
 
+
+// Read the entire file specified by 'filePath'.  Return its contents.
 char* utReadFile(char* filePath) {
+  FILE* f; 
+  f = fopen(filePath, "r"); 
+  
+  if(f == NULL){
+    //unable to open file - exit
+    printf("Unable to open file"); 
+    return NULL; 
+  }
 
-  // Read the entire file specified by 'filePath'.  Return its contents.
+  //move to the end of the file using fseek()
+  fseek(f, 0, SEEK_END); 
 
-  //++ Use fopen.  If operation fails, tell user and stop.
-  //++ Find how big the file is.  Call it fileSize.  Use fseek, ftell, fseek.
-  //++ Allocate a buffer, zero-filled, to hold the file contents.
+  //use ftell to get the current position and store it in fileSize
+  int fileSize = ftell(f); 
 
-  char* prog = (char*) calloc(1000, 1);                         //--
+  if(fileSize == -1){
+    printf("error getting file size"); 
+    //close the file and exit 
+    fclose(f); 
+    return NULL; 
+  }
 
-  //++ Read entire file into the 'prog' buffer
+  //Allocate a buffer, zero-filled, to hold the file contents.
+  char* prog = (char*) calloc(fileSize + 1, 1);                        
 
-  strcpy(prog, "int main() { int x; x = 42; sayn(x); }");       //--
+  //Read entire file into the 'prog' buffer
+  //move back to the beginning of the file 
+  fseek(f, 0, SEEK_SET); 
+
+  //copy contents from file to prog
+  fread(prog, 1, fileSize, f); 
+
+  //null terminate it 
+  prog[fileSize] = '\0'; 
+
+  //close the file 
+  fclose(f); 
 
   return prog;
-
 }
 
 char* utStrndup(char* s, int len) {

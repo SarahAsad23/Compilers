@@ -43,6 +43,9 @@ void lexKeyword(Tok** tok) {
 
   if (strcmp(s, "if")       == 0) { p->kind = TOKIF;       return; }
   if (strcmp(s, "return")   == 0) { p->kind = TOKRET;      return; }
+  if (strcmp(s, "while")    == 0) {p->kind = TOKWHILE;     return; }
+  if (strcmp(s, "int")      == 0) {p->kind = TOKINT;       return; }
+
 }
 
 // ============================================================================
@@ -88,25 +91,24 @@ Lex* lexNew(char* text) {
 // the number)
 // ============================================================================
 Tok* lexNum(Lex* lex) {
-  int start = lex->pos; //the starting position 
-  long sum = 0;
-  
-  //Step along the input string until non-digit hit & accumulate result into sum 
-  while(isdigit(lexPeek0(lex))){
-    //get the current character 
-    char current = lexPeek0(lex); 
-    //add it to the sum 
-    sum = (sum * 10) + (current - '0'); 
-    //move to the next char 
-    lexMove1(lex); 
-  }
-  
-  int len = lex->pos - start;
-  char* lexeme = utStrndup(&lex->text[start], len);
+    int start = lex->pos;
+    long sum = 0;
+    char c = lexPeek0(lex);  // Initialize 'c' to the current character
 
-  Tok* tok = tokNew(TOKNUM, lexeme, sum, lex->linNum, lex->colNum);    
-  return tok;
+    //++ Step along the input string until we hit a non-digit. Accumulate
+    //++ result into variable 'sum'
+    while (isdigit(c)) {
+        // Add the current character to the sum
+        sum = (sum * 10) + (c - '0');
+        c = lexMove1(lex); // Move to the next character
+    }
+
+    int len = lex->pos - start;
+    char* lexeme = utStrndup(&lex->text[start], len);
+
+    return tokNew(TOKNUM, lexeme, sum, lex->linNum, lex->colNum);
 }
+
 
 // ============================================================================
 // Return the current char in lex->text, located at position lex->pos.
