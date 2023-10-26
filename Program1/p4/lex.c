@@ -91,21 +91,24 @@ Lex* lexNew(char* text) {
 // the number)
 // ============================================================================
 Tok* lexNum(Lex* lex) {
-  int start = lex->pos;
-  long sum = lexPeek0(lex) - '0';                     // eg: 1
-  char c = lexMove1(lex);
+    int start = lex->pos;
+    long sum = 0;
+    char c = lexPeek0(lex);  // Initialize 'c' to the current character
 
-  //++ Step along the input string until we hit a non-digit.  Accumulate
-  //++ result into variable 'sum'
+    //++ Step along the input string until we hit a non-digit. Accumulate
+    //++ result into variable 'sum'
+    while (isdigit(c)) {
+        // Add the current character to the sum
+        sum = (sum * 10) + (c - '0');
+        c = lexMove1(lex); // Move to the next character
+    }
 
-  lexMove1(lex); lexMove1(lex); lexMove1(lex);                        //--
+    int len = lex->pos - start;
+    char* lexeme = utStrndup(&lex->text[start], len);
 
-  int len = lex->pos - start;
-  char* lexeme = utStrndup(&lex->text[start], len);
-
-  Tok* tok = tokNew(TOKNUM, "999", 999, lex->linNum, lex->colNum);    //--
-  return tok;
+    return tokNew(TOKNUM, lexeme, sum, lex->linNum, lex->colNum);
 }
+
 
 // ============================================================================
 // Return the current char in lex->text, located at position lex->pos.
