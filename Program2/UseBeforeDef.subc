@@ -1,0 +1,26 @@
+int add3(int a, int b, int c) {
+  int sum;
+  sum = a + b;
+  sum = sum + c;
+  return sum;
+}
+
+int arith(int a, int b) {
+  int monday; int tuesday; int friday;
+  wednesday = c;
+  monday = a * b;
+  if (monday < 42) {
+     friday = 3;
+  }
+  return friday;
+}
+
+int main() {
+  int x; int y; int z;
+  x = 1;
+  y = 2;
+  z = x + y;
+  i = add3(x, y, z);
+  i = arith(4, d);
+  return 0;
+}
