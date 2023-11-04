@@ -1,0 +1,29 @@
+int fib(int n) {
+  int nm1;
+  int nm2;
+  int fm1;
+  int fm2;
+
+  if (n == 0) { return 0; }
+  if (n == 1) { return 1; }
+
+  nm1 = n - 1;
+  fm1 = fib(nm1);
+
+  nm2 = n - 2;
+  fm2 = fib(nm2);
+  return fm1 + fm2;
+}
+
+
+
+int main() {
+  int i;  int f;
+
+  i = says("test14 : Expect = 377 : Actual = ");
+
+  f = fib(14);
+  i = sayn(f);
+
+  return 14;
+}

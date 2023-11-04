@@ -144,11 +144,16 @@ void rexType(Toks* toks) {
 // If => "if" "(" Exp ")" Block
 // ============================================================================
 void rexIf(Toks* toks) {
-
-  //++ Insert code here to recognize a valid SubC 'if' construct.
-  //++ This will require 5 lines of code.  Be guided by the grammar
-  //++ snippet in the comment above this function.
-
+  // if 
+  rexMust(toks, TOKIF); 
+  // ( 
+  rexMust(toks, TOKLPAREN); 
+  // exp 
+  rexExp(toks); 
+  // )
+  rexMust(toks, TOKRPAREN); 
+  // Block 
+  rexBlock(toks); 
 }
 
 // ============================================================================
@@ -376,7 +381,14 @@ void rexVars(Toks* toks) {
 // eg:      while (n < 10) { n = n + 1; }
 // ============================================================================
 void rexWhile(Toks* toks) {
-
-  //++ Insert code here to recognize a valid SubC 'while' construct.
-
+  // while
+  rexMust(toks, TOKWHILE); 
+  // (
+  rexMust(toks, TOKLPAREN); 
+  // Exp
+  rexExp(toks); 
+  // )
+  rexMust(toks, TOKRPAREN); 
+  // Block 
+  rexBlock(toks);
 }

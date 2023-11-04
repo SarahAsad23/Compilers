@@ -1,0 +1,27 @@
+int fac(int n) {
+  int product;  int i;
+  product = 1;
+  i = 1;
+
+  while (i <= n) {
+    product = product * i;
+    i = i + 1;
+  }
+  return product;
+}
+
+
+int main() {
+  int upto;
+  int answer;
+  int i;
+
+  i = says("test11 : Expect = 5040 : Actual = ");
+
+  upto = 7;
+  answer = fac(upto);
+
+  i = sayn(answer);
+
+  return 11;
+}

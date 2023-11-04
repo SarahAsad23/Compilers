@@ -1,0 +1,24 @@
+int fac(int n) {
+  int nm1;
+  int ans;
+
+  if (n == 0) {
+    return 1;
+  }
+
+  nm1 = n - 1;
+  ans = fac(nm1);
+  return n * ans;
+}
+
+
+int main() {
+  int f;  int i;
+
+  i = says("test15 : Expect = 5040 : Actual = ");
+
+  f = fac(7);
+  i = sayn(f);
+
+  return 15;
+}
