@@ -102,9 +102,7 @@ void visitExp (AstExp* ast){
     }
 
     printf("\n"); 
-     
 }
-
 
 int main(){
 
