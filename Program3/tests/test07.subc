@@ -1,0 +1,16 @@
+int main() {
+  int counter;  int test;  int i;
+
+  i = says("test07 : Expect = 3 : Actual = ");
+
+  counter = 1;
+  while (counter < 5) {
+    test = counter == 3;
+    if (test == 1) {
+      i = sayn(counter);
+    }
+    counter = counter + 1;
+  }
+
+  return 7;
+}

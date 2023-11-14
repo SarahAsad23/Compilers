@@ -1,0 +1,70 @@
+int sub1(int a, int b, int c, int d, int e, int f) {
+  int i;
+  
+  i = sayl();
+  i = says("test26 : Expect = 00000006 00000005 00000004 00000003 00000002 00000001 \n");
+  i = says("         Actual = ");
+  
+  i = sayn(a); i = says(" ");
+  i = sayn(b); i = says(" ");
+  i = sayn(c); i = says(" ");
+  i = sayn(d); i = says(" ");
+  i = sayn(e); i = says(" "); 
+  i = sayn(f); i = says(" "); i = sayl();
+
+  return 0;
+}  
+
+int sub2(int a, int b, int c, int d, int e, int f) {
+  int aa; int bb; int cc; int dd; int ee; int ff;
+  int i;
+  
+  i = sayl();
+  i = says("test26 : Expect = 00000001 00000002 00000003 00000004 00000005 00000006 \n");
+  i = says("         Actual = ");
+  
+  i = sayn(a); i = says(" ");
+  i = sayn(b); i = says(" ");
+  i = sayn(c); i = says(" ");
+  i = sayn(d); i = says(" ");
+  i = sayn(e); i = says(" "); 
+  i = sayn(f); i = says(" "); i = sayl();
+
+  aa = a; bb = b; cc = c; dd = d; ee = e; ff = f;
+  
+  i = sayl();
+  i = says("test31 : Expect = 00000001 00000002 00000003 00000004 00000005 00000006 \n");
+  i = says("         Actual = ");
+
+  i = sayn(aa); i = says(" ");
+  i = sayn(bb); i = says(" ");
+  i = sayn(cc); i = says(" ");
+  i = sayn(dd); i = says(" ");
+  i = sayn(ee); i = says(" "); 
+  i = sayn(ff); i = says(" "); i = sayl();
+  
+  i = sub1(ff,ee,dd,cc,bb,aa);
+
+  return 0;
+}  
+
+
+int main() {
+  int a; int b; int c; int d; int e; int f; int i;
+  
+  a = 1; b = 2; c = 3; d = 4; e = 5; f = 6;
+  
+  i = says("test26 : Expect = 00000001 00000002 00000003 00000004 00000005 00000006 \n");
+  i = says("         Actual = ");
+  
+  i = sayn(a); i = says(" ");
+  i = sayn(b); i = says(" ");
+  i = sayn(c); i = says(" ");
+  i = sayn(d); i = says(" ");
+  i = sayn(e); i = says(" ");
+  i = sayn(f); i = says(" ");  i = sayl();
+
+  i = sub2(a, b, c, d, e, f);
+  
+  return 26;
+}
