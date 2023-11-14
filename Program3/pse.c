@@ -96,11 +96,18 @@ AstBody* pseBody(Toks* toks) {
 // Eg: add3(x, 15, y)
 // ============================================================================
 AstCall* pseCall(Toks* toks) {
+  // nam
+  Tok* tok = pseMust(toks, 1, TOKNAM);
+  AstNam* nam = astNewNam(tok->lex); 
+  // left paren 
+  pseMust(toks, 1, TOKLPAREN); 
+  // args 
+  AstArg* arg = pseArgs(toks); 
+  // right paren 
+  pseMust(toks, 1, TOKRPAREN); 
 
-  //++ Use the above grammar to complete the body of pseCall.
-  //++ Note that the argument list can contain zero or more Args.
-
-  return NULL;              //--
+  // return call node 
+  return astNewCall(nam, arg); 
 }
 
 // ============================================================================
@@ -158,11 +165,19 @@ AstFun* pseFun(Toks* toks) {
 // If => "if" "(" Exp ")" Block
 // ============================================================================
 AstIf* pseIf(Toks* toks) {
+  // if
+  pseMust(toks, 1, TOKIF); 
+  // left paren
+  pseMust(toks, 1, TOKLPAREN); 
+  // expression 
+  AstExp* exp = (AstExp*) pseExp(toks);
+  // right paren 
+  pseMust(toks, 1, TOKRPAREN);  
+  // block 
+  AstBlock* block = (AstBlock*) pseBlock(toks); 
 
-  //++ Use the grammar rule above to complete the body
-  //++ of this function.  6 lines of code.
-
-  return NULL;          //--
+  //return if node 
+  return astNewIf(exp, block);
 }
 
 // ============================================================================
@@ -402,11 +417,19 @@ AstVar* pseVars(Toks* toks) {
 // eg: while (n < 10) { n = n + 1 ; }
 // ============================================================================
 AstWhile* pseWhile(Toks* toks) {
+  // while
+  pseMust(toks, 1, TOKWHILE); 
+  // left paren
+  pseMust(toks, 1, TOKLPAREN); 
+  // expression 
+  AstExp* exp = (AstExp*) pseExp(toks);
+  // right paren 
+  pseMust(toks, 1, TOKRPAREN); 
+  // block 
+  AstBlock* block = (AstBlock*) pseBlock(toks); 
 
-  //++ Use the grammar above to write the body of pseWhile.
-  //++ Also, replace the line commented //--
-
-  return NULL;                //--
+  //return while node
+  return astNewWhile(exp, block); 
 }
 
 // ============================================================================
