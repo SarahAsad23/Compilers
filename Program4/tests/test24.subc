@@ -1,0 +1,18 @@
+// test 24 : 6 variables
+
+int main() {
+  int a; int b; int c; int d; int e; int i;
+  
+  a = 1; b = 2; c = 3; d = 4; e = 5;
+  
+  i = says("test24 : Expect = 00000001 00000002 00000003 00000004 00000005 \n");
+  i = says("         Actual = ");
+  
+  i = sayn(a); i = says(" ");
+  i = sayn(b); i = says(" ");
+  i = sayn(c); i = says(" ");
+  i = sayn(d); i = says(" ");
+  i = sayn(e); i = says(" ");
+  
+  return 24;
+}

@@ -1,0 +1,17 @@
+int add(int a, int b) {
+  int x;
+  x = a + b;
+  return x;
+}
+
+int main() {
+  int r;    int i;
+  r = 3;
+
+  i = says("test09 : Expect = 7 : Actual = ");
+
+  r = add(r, 4);
+  i = sayn(r);
+
+  return 9;
+}

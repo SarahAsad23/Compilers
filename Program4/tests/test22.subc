@@ -1,0 +1,21 @@
+// test22.subc - 4 parameters
+
+int sub(int a, int b, int c, int d) {
+  int i;
+  i = sayn(a); i = says(" ");
+  i = sayn(b); i = says(" ");
+  i = sayn(c); i = says(" ");
+  i = sayn(d); i = says(" ");
+  return 0;
+}
+
+int main() {
+  int i;
+  
+  i = says("test22 : Expect = 00000001 00000002 00000003 00000004");
+  i = sayl();
+  i = says("       : Actual = ");
+  i = sub(1, 2, 3, 4);
+ 
+  return 22;
+}
