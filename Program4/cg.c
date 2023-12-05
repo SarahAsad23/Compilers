@@ -340,12 +340,29 @@ void cgFun(Cg* cg, AstFun* astfun) {
 // If => "if" "(" Exp ")" Block
 // ============================================================================
 void cgIf(Cg* cg, char* funnam, AstIf* astif) {
+  
+  // Note that cgExp returns its answer in R0: 0 for FALSE, 1 for TRUE
   char line[LINESIZE];
 
-  // Note that cgExp returns its answer in R0: 0 for FALSE, 1 for TRUE
+  char* exitlabel = cgLabel();  // Generate a label for the exit of the if block
 
-  //++ Complete this function
+  // Evaluate the expression inside the if statement
+  cgExp(cg, funnam, astif->exp); 
 
+  // Check the result of the evaluation (in R0)
+  sprintf(line, "\t CMP \t R0, #0"); // Check if the condition is false
+  emitCode(cg->emit, line);
+
+  // If the condition is false, jump to the exit label
+  sprintf(line, "\t BEQ \t %s", exitlabel);
+  emitCode(cg->emit, line);
+
+  // Generate code for the if block
+  cgBlock(cg, funnam, astif->block);
+
+  // Label for the exit of the if block
+  sprintf(line, "%s:", exitlabel);
+  emitCode(cg->emit, line);
 }
 
 // ============================================================================
@@ -436,7 +453,26 @@ void cgProg(Cg* cg, AstProg* astprog) {
 // 'funnam' is the name of the current function
 // ============================================================================
 void cgProlog(Cg* cg, char* funnam) {
-  //++ Complete this function
+ 
+  Emit* emit = cg->emit; // Alias for emitting code
+  char line[LINESIZE];   // Line buffer for code generation
+
+  // Save the Frame Pointer (FP) and Link Register (LR) to the stack
+  sprintf(line, "\t PUSH \t {FP, LR}");
+  emitCode(emit, line);
+
+  // Set up the new Frame Pointer (FP) to point to the current Stack Pointer (SP)
+  sprintf(line, "\t MOV \t FP, SP");
+  emitCode(emit, line);
+
+  // Allocate space for local variables on the stack
+  int localVarSpace = 32; 
+  sprintf(line, "\t SUB \t SP, SP, #%d", localVarSpace);
+  emitCode(emit, line);
+
+  // Emit the label for the start of the function
+  sprintf(line, "%s:", funnam); 
+  emitCode(emit, line);
 }
 
 // ============================================================================

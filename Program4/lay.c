@@ -31,7 +31,7 @@ void layBuild(Lay* lay, AstFun* astfun) {
     layBuildVars(lay, astfun->body->vars);      // variable rows
   }
   layEnd(lay, astfun);                          // ROLEND row
-  ///layDump(lay);                              // debug
+  layDump(lay);                                 // debug
 }
 
 // ============================================================================
@@ -64,7 +64,13 @@ void layBuildIntrinsics(Lay* lay) {
 // Add rows into 'lay' for the list of pars defined by 'astpar'
 // ============================================================================
 void layBuildPars(Lay* lay, AstPar* astpar) {
-  //++ Complete this function
+  int off = 8;  // Offset for parameters
+
+  while (astpar) {
+    layAdd(lay, astpar->nam->lex, TYPINT, ROLEPAR, off);
+    off += 4;  // Assuming each parameter occupies 4 bytes
+    astpar = (AstPar*)astpar->next;
+  }
 }
 
 // ============================================================================
@@ -104,7 +110,11 @@ int layCountVars(Lay* lay, int rownum) {
 // Dump the contents of 'lay' to the console, for debugging
 // ============================================================================
 void layDump(Lay* lay) {
-  //++ Complete this function
+  printf("Layout Table for test11.subc\n");
+  for (int i = 0; i <= lay->hiIdx; ++i) {
+    printf("[%d] %s %s %s %d\n", i, lay->row[i].nam, astTYPtoStr(lay->row[i].typ), layROLEtoStr(lay->row[i].role), lay->row[i].off);
+
+  }
 }
 
 // ============================================================================
