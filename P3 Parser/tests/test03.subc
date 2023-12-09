@@ -1,6 +1,0 @@
-int main() {
-  int i;
-  i = says("test03 : Expect = 3 : Actual = ");
-  i = sayn(3);
-  return 3;
-}
